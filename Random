@@ -1,0 +1,37 @@
+using System;
+
+namespace IntegralOfRandom
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            _ = new IntegrationOfRandom();
+        }
+    }
+    public class Variables
+    {
+        public double da,fx,sin,cos,integral,x;
+    }
+    public class IntegrationOfRandom:Variables
+    {
+        public IntegrationOfRandom()
+        {
+            Random r = new Random();
+            da = 1.0e-8;
+            for (x = 0.0; x < 100.0;)
+            {
+                fx = Function(r);
+                sin = fx * Math.Sqrt(1.0 / (1.0 + fx * fx));
+                cos = Math.Sqrt(1.0 / (1.0 + fx * fx));
+                x += da * (sin + cos) / 2;
+                integral += da * (sin + cos) / 2 * fx;
+                Console.WriteLine("{0} {1}", x, integral);
+            }
+        }
+        public double Function(Random r)
+        {
+            return r.NextDouble();
+        }
+    }
+}
